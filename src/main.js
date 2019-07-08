@@ -11,11 +11,18 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 Vue.prototype.$http = axios
-
+    //在请求拦截器中给每次发送请求的request添加令牌
+axios.interceptors.request.use(function(config) {
+        // console.log(config.url)
+        //添加Authorization这个令牌字段
+        config.headers.Authorization = sessionStorage.getItem("token");
+        return config;
+    })
+    //将axios 添加到原型中
 Vue.config.productionTip = false
 
 
 new Vue({
-  router,
-  render: h => h(App)
+    router,
+    render: h => h(App)
 }).$mount('#app')
