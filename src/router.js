@@ -6,26 +6,39 @@ import Home from './components/Home.vue'
 Vue.use(Router)
 
 const router = new Router({
-  routes: [
-    { path: '/', redirect: '/login' },
-    { path: '/login', component: Login },
-    { path: '/home', component: Home }
-  ]
+    routes: [
+        { path: '/', redirect: '/login' },
+        { path: '/login', component: Login },
+        { path: '/home', component: Home }
+    ]
 })
 
 //挂载路由导航守卫,to表示将要访问的路径，from表示从哪里来，next是下一个要做的操作
+// to:将要访问路径
+//form：代表从哪个路径跳转而来
+//next是一个函数，表示放行
+// next() 放行   next("/login")强行跳转
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/login')
+//     return next();
+
+//   //获取token
+//   const tokenStr = window.sessionStorage.getItem('token')
+//   //如果没有token 就跳转到登录页面
+//   if (!tokenStr)
+//   //强制跳转
+//     return next('/login')
+
+//   next();
+
+// })
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login')
-    return next();
-
-  //获取token
-  const tokenStr = window.sessionStorage.getItem('token')
-
-  if (!tokenStr)
-    return next('/login')
-
-  next();
-
+    if (to.path === '/login')
+        return next();
+    const token = window.sessionStorage.getItem('token')
+    if (!token)
+        return next('/login')
+    next();
 })
 
-export default router 
+export default router
