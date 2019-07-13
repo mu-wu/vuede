@@ -20,7 +20,16 @@ import {
     Col,
     Table,
     TableColumn,
-    Switch
+    Switch,
+    Tooltip,
+    Pagination,
+    Dialog,
+    MessageBox,
+    Tag,
+    Tree,
+    Select,
+    Option,
+    Cascader
 
 } from 'element-ui'
 
@@ -45,6 +54,14 @@ Vue.use(Col)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Switch)
-
-// 进行全局挂载：VUE实例上
+Vue.use(Tooltip)
+Vue.use(Pagination)
+Vue.use(Dialog)
+Vue.use(Tag)
+Vue.use(Tree)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Cascader)
+    // 进行全局挂载：VUE实例上
 Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm
